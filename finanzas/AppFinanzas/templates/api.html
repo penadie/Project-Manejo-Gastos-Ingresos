@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+    <meta name="author" content="GeeksLabs">
+    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <title>Finanzas | Monedas</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-theme.css' %}" rel="stylesheet">
+    <link href="{% static 'css/elegant-icons-style.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/daterangepicker.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style-responsive.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/api.css' %}">
+  </head>
+  
+
+  <body >
+    {% csrf_token %} 
+    <!-- container section start -->
+    <section id="container" class="">
+
+      <!-- Icono para minimizar barra-->
+      <header class="header dark-bg">
+        <div class="toggle-nav">
+          <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
+        </div>
+      <!--FIN Icono para minimizar barra-->
+        <!--logo start-->
+        <a href="{% url 'index' %}" class="logo">Fina<span class="lite">nzas</span></a>
+                <div class="top-nav notification-row">
+          <ul class="nav pull-right top-menu">
+            <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+              <span class="username">{{ user.username }}</span>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu extended logout">
+              <div class="log-arrow-up"></div>
+              <li class="eborder-top">
+                <a href="#"><i class="icon_profile"></i> My Profile</a>
+              </li>
+              <li>
+                <a href="{% url 'desconexion' %}"><i class="icon_key_alt"></i> Log Out</a>
+              </li>
+            </ul>
+            </li>
+          </ul>
+        </div>
+        <!--logo end-->
+
+      </header>
+      <!--header end-->
+
+      <!--sidebar start-->
+      <aside>
+        <div id="sidebar" class="nav-collapse ">
+          <!-- sidebar menu start-->
+          <ul class="sidebar-menu">
+            <li class="">
+              <a class="" href="{% url 'index' %}">
+                <i class="icon_house_alt"></i>
+                <span>Inicio.</span>
+              </a>
+            </li>
+            <li class="sub-menu">
+              <a href="javascript:;" class="">
+                            <i class="icon_document_alt"></i>
+                            <span>Gastos</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+              <ul class="sub">
+                <li class="sub-menu">
+                  <a href="{% url 'gastos' %}" class="">
+                    <i class="icon_document_alt"></i>
+                    <span>Agregar Gastos.</span>
+                  </a>
+                </li>
+                <li class="sub-menu">
+                  <a href="{% url 'agregar_tipo_gasto' %}" class="">
+                    <i class="icon_document_alt"></i>
+                    <span>Tipos de Gastos.</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="sub-menu">
+              <a href="javascript:;" class="">
+                            <i class="icon_document_alt"></i>
+                            <span>Ingresos</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+              <ul class="sub">
+                <li class="sub-menu">
+                  <a href="{% url 'ingresos' %}" class="">
+                    <i class="icon_document_alt"></i>
+                    <span>Agregar Ingresos.</span>
+                  </a>
+                </li>
+                <li class="sub-menu">
+                  <a href="{% url 'agregar_tipo_ingreso'%}" class="">
+                    <i class="icon_document_alt"></i>
+                    <span>Tipos de Ingreso.</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="sub-menu">
+              <a href="{% url 'moneda'%}" class="">
+                <i class="icon_document_alt"></i>
+                <span>Monedas.</span>
+              </a>
+            </li>
+          </ul>
+          <!-- sidebar menu end-->
+        </div>
+      </aside>
+      <!--sidebar end-->
+
+      
+      
+      
+      <!--main content start-->
+      <section id="main-content">
+        <section class="wrapper">
+          <div class="row">
+            <div class="col-lg-12">
+              <h3 class="page-header"><i class="fa fa-file-text-o"></i> Monedas</h3>
+              <ol class="breadcrumb">
+                <li><i class="fa fa-home"></i><a href="{% url 'index' %}">Inicio</a></li>
+                <li><i class="icon_document_alt"></i>Monedas</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-12">
+                  <section class="panel">
+                    <div class="col-lg-4">
+                      <div class="box-header">
+                        Dolar
+                      </div>
+                      <div class="box red">
+                        <div>
+                          <form action="" class="form-group" id="dolarTrans" method="POST">
+                            <label for="dolar">Introducir Dolares</label>
+                            <input type="text" class="form-control input-tamanPeque" id="dolar" name="dolar">
+                            <span id="hDo" class="spanH">Valido solo numeros y punto en vez de coma</span>
+                            <br/>
+                            <input type="submit" value="Enviar" class="btn btn-info"/>
+                          </form>
+                        </div>
+                      </div>
+                      <br/>
+                      <table class="table borderTable">
+                        <thead class="borderheader">
+                          <tr>
+                            <th>#</th>
+                            <th>Nombre Moneda</th>
+                            <th>Cantidad</th>
+                            <th id="cInputDolar"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="active">
+                            <td>1</td>
+                            <td>CLP</td>
+                            <td></td>
+                            <td id="dolarToCLP"></td>
+                          </tr>
+                          <tr class="success">
+                            <td>2</td>
+                            <td>Euro</td>
+                            <td></td>
+                            <td id="dolarToEuro"></td>
+                          </tr>
+                          <tr class="active">
+                            <td>3</td>
+                            <td>UF</td>
+                            <td></td>
+                            <td id="dolarToUF"></td>
+                          </tr>
+                          <tr class="success">
+                            <td>4</td>
+                            <td>BITCOIN</td>
+                            <td></td>
+                            <td id="dolarToBTC"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="box-header">
+                        Pesos Chilenos
+                      </div>
+                      <div class="box red">
+                        <div>
+                          <form action="" class="form-group" id="clpTrans" method="POST">
+                            <label for="clp">Introducir Pesos</label>
+                            <input type="text" class="form-control input-tamanPeque" id="clp" name="clp">
+                            <span id="hCLP" class="spanH">Valido solo numeros y punto en vez de coma</span>
+                            <br/>
+                            <input type="submit" value="Enviar" class="btn btn-info"/>
+                          </form>
+                        </div>
+                      </div>
+                      <br/>
+                      <table class="table borderTable">
+                        <thead class="borderheader">
+                          <tr>
+                            <th>#</th>
+                            <th>Nombre Moneda</th>
+                            <th>Cantidad:</th>
+                            <th id="cInputClp"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="active">
+                            <td>1</td>
+                            <td>Dolar</td>
+                            <td></td>
+                            <td id="clpToDolar"></td>
+                          </tr>
+                          <tr class="warning">
+                            <td>2</td>
+                            <td>Euro</td>
+                            <td></td>
+                            <td id="clpToEuro"></td>
+                          </tr>
+                          <tr class="active">
+                            <td>3</td>
+                            <td>UF</td>
+                            <td></td>
+                            <td id="clpToUF"></td>
+                          </tr>
+                          <tr class="warning">
+                            <td>4</td>
+                            <td>BITCOIN</td>
+                            <td></td>
+                            <td id="clpToBTC"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="box-header">
+                        Euros
+                      </div>
+                      <div class="box red">
+                        <div>
+                          <form action="" class="form-group" id="euroTrans" method="POST">
+                            <label for="euro">Introducir Euros</label>
+                            <input type="text" class="form-control input-tamanPeque" id="euro" name="euro">
+                            <span id="hEu" class="spanH">Valido solo numeros y punto en vez de coma</span>
+                            <br/>
+                            <input type="submit" value="Enviar" class="btn btn-info"/>
+                          </form>
+                        </div>
+                      </div>
+                      <br/>
+                      <table class="table borderTable">
+                        <thead class="borderheader">
+                          <tr>
+                            <th>#</th>
+                            <th>Nombre Moneda</th>
+                            <th>Cantidad</th>
+                            <th id="cInputEu"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="active">
+                            <td>1</td>
+                            <td>CLP</td>
+                            <td></td>
+                            <td id="euroToCLP"></td>
+                          </tr>
+                          <tr class="danger">
+                            <td>2</td>
+                            <td>Dolar</td>
+                            <td></td>
+                            <td id="euroToDolar"></td>
+                          </tr>
+                          <tr class="active">
+                            <td>3</td>
+                            <td>UF</td>
+                            <td></td>
+                            <td id="euroToUF"></td>
+                          </tr>
+                          <tr class="danger">
+                            <td>4</td>
+                            <td>BITCOIN</td>
+                            <td></td>
+                            <td id="euroToBTC"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
+    </section>
+    <!--main content end-->
+    
+    <!-- container section start -->
+  </body>
+  <script src="{% static 'js/jquery-3.6.0.js'%}"></script>
+  <script src="{% static 'js/jquery-1.8.3.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js'%}"></script>
+  <script src="{% static 'js/jquery.scrollTo.min.js'%}"></script>
+  <script src="{% static 'js/jquery.nicescroll.js'%}" type="text/javascript"></script>    
+  <script type="text/javascript" src="{% static 'js/ga.js'%}"></script>
+  <script src="{% static 'js/bootstrap-switch.js'%}"></script>
+  <script src="{% static 'js/bootstrap-wysiwyg.js'%}"></script>
+  <script src="{% static 'js/bootstrap-wysiwyg-custom.js'%}"></script>
+  <script src="{% static 'js/moment.js'%}"></script>
+  <script src="{% static 'js/scripts.js'%}"></script>
+  <script src="{% static 'js/validatxt.js'%}"></script>
+  <script src="{% static 'js/scriptapi.js'%}"></script>
+</html>
